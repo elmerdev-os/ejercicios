@@ -1,0 +1,249 @@
+
+#EJERCICIO 1
+numeros <- c(10, -15, 8, 0, -22, 45, -3, 0, 17, -9)
+clasificacion <- c()
+for (i in 1:length(numeros)) {
+  if (numeros[i] > 0) {
+    clasificacion <- c(clasificacion, paste("Número", numeros[i], "-> Positivo"))
+  } else if (numeros[i] < 0) {
+    clasificacion <- c(clasificacion, paste("Número", numeros[i], "-> Negativo"))
+  } else {
+    clasificacion <- c(clasificacion, paste("Número", numeros[i], "-> Cero"))
+  }
+}
+cat("\nResultados de la clasificación:\n")
+for (i in 1:length(clasificacion)) {
+  cat(clasificacion[i], "\n")
+}
+
+
+#EJERCICIO 2
+set.seed(123)
+numeros <- sample(1:100, 100, replace = TRUE)
+pares <- 0
+impares <- 0
+numeros_pares <- c()  
+numeros_impares <- c()  
+for (i in 1:length(numeros)) {
+  if (numeros[i] %% 2 == 0) {
+    pares <- pares + 1
+    numeros_pares <- c(numeros_pares, numeros[i])
+  } else {
+    impares <- impares + 1
+    numeros_impares <- c(numeros_impares, numeros[i])
+  }
+}
+cat("\n=== ANÁLISIS DE NÚMEROS PARES E IMPARES ===\n")
+cat("\nSemilla utilizada:", 123)
+cat("\nNúmeros elegidos aleatoriamente:\n")
+cat(numeros, "\n")
+
+cat("\n=== RESULTADOS ===")
+cat("\nCantidad de números pares:", pares)
+cat("\nCantidad de números impares:", impares)
+cat("\nTotal de números analizados:", length(numeros))
+cat("\n\n=== DESGLOSE DE NÚMEROS ===")
+cat("\nNúmeros pares encontrados:\n")
+cat(sort(numeros_pares), "\n")
+cat("\nNúmeros impares encontrados:\n")
+cat(sort(numeros_impares), "\n")
+
+
+#EJERCICIO 3
+limite_superior <- 10
+suma_total <- 0
+cat("\n=== CÁLCULO DE LA SUMA DE LOS PRIMEROS ", limite_superior, " NÚMEROS ===\n")
+for (numero_actual in 1:limite_superior) {
+  suma_total <- suma_total + numero_actual  
+}
+cat("La suma de los primeros", limite_superior, "números es:", suma_total, "\n")
+
+
+
+
+#EJERCICIO 4
+cat("\nSecuencia de Fibonacci\n")
+a <- 0
+b <- 1
+contador <- 1
+
+print("Secuencia de Fibonacci:")
+print(a)
+print(b)
+
+while(contador <= 18) {  
+  siguiente <- a + b
+  print(siguiente)
+  a <- b
+  b <- siguiente
+  contador <- contador + 1
+}
+
+
+
+
+#EJERCICIO 5
+n <- 5
+factorial <- 1
+i <- 1
+
+while (i <= n) {
+  factorial <- factorial * i
+  i <- i + 1
+}
+
+cat("Factorial de", n, "\n1x2x3x4x5\nf", n, ": ", factorial)
+
+
+
+
+# 6. Juego de adivinanza
+numero_secreto <- sample(1:100, 1)
+intentos <- 0
+max_intentos <- 5
+
+while (intentos < max_intentos) {
+  intentos_restantes <- max_intentos - intentos
+  cat("Te quedan", intentos_restantes, "intentos.\n")
+  numero_ingresado <- readline("Adivina el número (1-100): ")
+  if (!grepl("^[0-9]+$", numero_ingresado)) {
+    cat("Por favor, ingresa solo números.\n")
+    next
+  }
+  numero_ingresado <- as.numeric(numero_ingresado)
+  
+  if (numero_ingresado < 1 || numero_ingresado > 100) {
+    cat("Por favor, ingresa un número válido entre 1 y 100.\n")
+  } else {
+    intentos <- intentos + 1
+    if (numero_ingresado == numero_secreto) {
+      cat("¡Adivinaste! El número secreto era", numero_secreto, ".\n")
+      cat("Lo lograste en", intentos, "intentos.\n")
+      break
+    } else if (numero_ingresado < numero_secreto) {
+      cat("El número secreto es mayor.\n")
+    } else {
+      cat("El número secreto es menor.\n")
+    }
+    if (intentos == max_intentos) {
+      cat("\n¡Game Over! Se acabaron los intentos.\n")
+      cat("El número secreto era", numero_secreto, ".\n")
+    }
+  }
+}
+
+
+
+#EJERCICIO 7
+contra_correct <- "123"
+intent <- 0
+max_intent <- 3
+contra_ingre <- ""
+while (intent < max_intent && contra_ingre != contra_correct) {
+  intent <- intent + 1
+  cat("Introduce la contraseña: ")
+  contra_ingre <- readLines(stdin(), 1)
+  if (contra_ingre == contra_correct) {
+    cat("Acceso autorizado.\n")
+  } else {
+    cat("Contraseña incorrecta. Este es el intento", intent, "de", max_intent, "\n")
+  }
+  if (intent == max_intent && contra_ingre != contra_correct) {
+    cat("Acceso denegado. Has excedido el límite de", max_intent, "intentos permitidos.\n")
+  }
+}
+
+
+
+#EJERCICIO 8
+cat("\n=== CALCULADORA DE SUMA DE DÍGITOS ===\n")
+
+repeat {
+  entrada <- readline("Ingrese un número entero (o 'salir' para terminar): ")
+  if (tolower(entrada) == "salir") {
+    cat("\n¡Gracias por usar la calculadora!\n")
+    break
+  }
+  if (!grepl("^[0-9]+$", entrada)) {
+    cat("\n❌ Error: Ingrese solo números enteros positivos\n")
+    next
+  }
+  numero <- as.numeric(entrada)
+  numero_original <- numero
+  suma <- 0
+  cat("\nProceso de cálculo:\n")
+  cat("--------------------\n")
+  digitos <- c()
+  while (numero > 0) {
+    digito <- numero %% 10
+    suma <- suma + digito
+    digitos <- c(digito, digitos)
+    numero <- floor(numero / 10)
+  }
+  proceso <- paste(digitos, collapse = " + ")
+  
+  cat(sprintf("Número ingresado: %d\n", numero_original))
+  cat(sprintf("Dígitos: %s\n", proceso))
+  cat(sprintf("Suma total: %s = %d\n", proceso, suma))
+  cat("\nInformación adicional:\n")
+  cat(sprintf("• Cantidad de dígitos: %d\n", length(digitos)))
+  cat(sprintf("• Dígito mayor: %d\n", max(digitos)))
+  cat(sprintf("• Dígito menor: %d\n", min(digitos)))
+  cat(sprintf("• Promedio de dígitos: %.2f\n", mean(digitos)))
+  cat("\n¿Desea calcular otro número?\n")
+  cat("(Presione Enter para continuar o escriba 'salir')\n")
+  respuesta <- readline("")
+  
+  if (tolower(respuesta) == "salir") {
+    cat("\n¡Gracias por usar la calculadora!\n")
+    break
+  }
+  
+}
+
+
+
+#EJERCICIO 9
+filas <- 6
+cat("\n=== PIRÁMIDE DE LETRAS ===\n")
+cat("Número de filas:", filas, "\n\n")
+for (i in 1:filas) {
+  for (j in 1:(filas - i)) {
+    cat(" ") 
+  }
+  for (k in 1:(2 * i - 1)) {
+    cat("X")  
+  }
+  
+  cat("\n")
+}
+
+cat("\nFin de la pirámide.\n")
+
+
+
+#EJERCICIO 10
+
+
+
+rango_numeros <- 2:100
+numeros_primos <- c()
+cat("\n=== DESCUBRIENDO NÚMEROS PRIMOS DE 2 A 100 ===\n")
+for (numero_actual in rango_numeros) {  
+  es_primo <- TRUE  
+  for (divisor_actual in 2:sqrt(numero_actual)) {  
+    if (numero_actual %% divisor_actual == 0) {  
+      es_primo <- FALSE 
+      break  
+    }
+  }
+  if (es_primo && numero_actual > 1) {  
+    numeros_primos <- c(numeros_primos, numero_actual) 
+  }
+}
+
+cat("Números primos encontrados:\n")
+cat(numeros_primos, "\n")
+
+
+cat("=== FIN DE LA BÚSQUEDA DE NÚMEROS PRIMOS ===\n")
