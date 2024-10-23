@@ -1,11 +1,11 @@
 {
     "id": "A70BB1B6",
-    "path": null,
+    "path": "C:/Users/holas/Downloads/ejercicos.R",
     "project_path": null,
     "type": "r_source",
     "hash": "3666823721",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1729635968339.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "249,0",
+        "cursorPosition": "247,0",
         "scrollLine": "233"
     },
     "folds": "",
-    "lastKnownWriteTime": 7454057966332046965,
-    "encoding": "",
+    "lastKnownWriteTime": 1729643059,
+    "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1729641578877,
+    "last_content_update": 1729643060090,
     "read_only": false,
     "read_only_alternatives": []
 }
